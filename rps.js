@@ -54,22 +54,6 @@ function playRound(playerSelection) {
     
     
 
-    /*if(playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "paper") {
-        
-        return "You lose! Paper Beats Rock!";
-    } else if(playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "scissors") {
-        return "You lose! Scissors beats Paper!";
-    } else if(playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock") {
-        return "You lose! Rock Beats Scissors!";
-    } else if(playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "rock") {
-        return "Draw!";
-    } else if(playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "paper") {
-        return "Draw!";
-    } else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "scissors") {
-        return "Draw!";
-    } else {
-        return "You win!";
-    } */
 }
 
  const round = playRound(playerSelection);
