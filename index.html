@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-Paper-Scissors</title>
-</head>
-<body>
-    <form>
-    <input type="text" id="move">
-    <button id="submit">Play!</button>
-    </form>
-    <script src="rps.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock-Paper-Scissors</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="score">
+            <div class="player-score">0</div>
+            <div style="margin: 0px 50px">-</div>
+            <div class="computer-score">0</div>
+        </div>
+        <div class="message"></div>
+        <div class="d-flex">
+            <div class="card">
+                <div class="move-cart" data-move="rock">
+                    <button class="move">Rock</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="move-cart" data-move="paper">
+                    <button class="move">Paper</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="move-cart" data-move="scissors">
+                    <button class="move">Scissors</button>
+                </div>
+                
+            </div>
+        </div>
+         <div class="dashboard">
+        <div class="dashboard-side">
+          <h2 class="headindg-sub">Player</h2>
+          <div class="player-selection">
+            <!-- <p>Rock</p> -->
+          </div>
+        </div>
+        <div class="dashboard-side">
+          <h2 class="headindg-sub">Computer</h2>
+          <div class="computer-selection">
+            <!-- <p>Paper</p> -->
+          </div>
+        </div>
+        <div class="dashboard">
+            <div class="dashboard-side">
+              <h2 class="headindg-sub">Player</h2>
+              <div class="player-selection">
+                <!-- <p>Rock</p> -->
+              </div>
+            </div>
+            <div class="dashboard-side">
+              <h2 class="headindg-sub">Computer</h2>
+              <div class="computer-selection">
+                <!-- <p>Paper</p> -->
+              </div>
+            </div>
+          </div>
+      </div>
+
+        <script src ="rps.js"></script>
+    </body>
 </html>

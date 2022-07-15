@@ -1,0 +1,17 @@
+body {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+}
+
+.score {
+    margin: 0 auto;
+}
+.message {
+    margin: 0 auto;
+}
+.d-flex {
+    margin: 0 auto;
+}

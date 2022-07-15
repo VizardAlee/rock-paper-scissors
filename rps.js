@@ -1,68 +1,130 @@
-/* 
-    rock-paper-scissors!
+// GETTING EVERYTHING DOWN
 
-    First create a function that defines the interraction between the 3 elements
-    1. rock beats scissors
-    2. scissors beats paper
-    3. paper beats rock
-*/
+// All necessary DOM nodes
 
-//Following TOP's provided steps, I set up the computerPlay Expression
+const moves = Array.from(document.querySelectorAll('.move-cart'));
+console.log(moves);
 
-// Declare a Global Variable
-const rps = ["rock", "paper", "scissors"];
+const message = document.querySelector('.message');
+const scorePlayer = document.querySelector('.player-score');
+const scoreComputer = document.querySelector('.computer-score');
+const selectionPlayer = document.querySelector('.player-selection');
+const selectionComputer = document.querySelector('.computer-selection');
 
-function computerPlay() {
-    let randomPlay = rps[Math.floor(Math.random() * rps.length)];
-    return randomPlay;
-}
-
-//console.log(computerPlay());
-
-// Write a function that creates a single round of rps
-
-const playerSelection = prompt("Rock, Paper or Scissors?");
-const computerSelection = computerPlay();
 let playerScore = 0;
 let computerScore = 0;
 
-function playRound(playerSelection) {
-    let result = "";
-    if ((playerSelection.toLowerCase() == 'rock' && computerSelection == 'scissors') ||
-        (playerSelection.toLowerCase() == 'paper' && computerSelection == 'rock') ||
-        (playerSelection.toLowerCase() == 'scissors' && computerSelection == 'paper')) {
-            playerScore += 1;
-            result = alert(`You win! ${playerSelection} beats ${computerSelection}! 
-            Player ${playerScore} Computer ${computerScore}`);
-
-
-    } else if(  (playerSelection.toLowerCase() == 'rock' && computerSelection == 'paper') ||
-                (playerSelection.toLowerCase() == 'paper' && computerSelection == 'scissors') ||
-                (playerSelection.toLowerCase() == 'scissors' && computerSelection == 'rock')) {
-                computerScore += 1;
-                result = alert(`You lose! ${computerSelection} beats ${playerSelection}!
-                Player ${playerScore} Computer ${computerScore}`);
-
-
-    } else if(playerSelection.toLowerCase() == computerSelection) {
-        result = alert(`It's a tie! you both chose ${computerSelection}`);
-    } else {
-        result = alert(`It can't be ${playerSelection}`);
+// Start Game when user clicks on an image
+moves.forEach((move) =>
+  move.addEventListener('click', () => {
+    if (playerScore >= 5 || computerScore >= 5) {
+      return;
     }
-    return result
-    
-    
-    
+   game(move.dataset.move);
+  
+  })
+);
 
+
+// Declare all functions
+
+// make the random 3 numbers be from the selection of the game
+
+function getComputerSelection() {
+    let computerNumber = random(3);
+    let computerGuess = '';
+
+    switch (computerNumber) {
+            case 1:
+              computerGuess = 'Rock';
+              break;
+            case 2:
+              computerGuess = 'Paper';
+              break;
+            case 3:
+              computerGuess = 'Scissors';
+              break;
+            default:
+              break;
+    }
+    return computerGuess;
 }
 
- const round = playRound(playerSelection);
- function game() {
-    for (let i = 0; i < 5; i++) {
-        round += i;
-    }
-    return round;
- }
- game();
+// the logic behind each round of the game
 
- 
+function playRound(playerSelection, computerSelection) {
+    let log = '';
+
+  if (playerSelection === 'Rock') {
+    if (computerSelection === 'Paper') {
+      log = 'You Lose! Paper beats Rock';
+    } else if (computerSelection === 'Scissors') {
+      log = 'You Win! Rock beats Scissors';
+    } else {
+      log = "It's a tie";
+    }
+  } else if (playerSelection === 'Paper') {
+    if (computerSelection === 'Scissors') {
+      log = 'You Lose! Scissors beats Paper';
+    } else if (computerSelection === 'Rock') {
+      log = 'You Win! Paper beats Rock';
+    } else {
+      log = "It's a tie";
+    }
+  } else if (playerSelection === 'Scissors') {
+    if (computerSelection === 'Rock') {
+      log = 'You Lose! Rock beats Scissors';
+    } else if (computerSelection === 'Paper') {
+      log = 'You Win! Scissors beats Paper';
+    } else {
+      log = "It's a tie";
+    }
+  }
+
+  return log;
+}
+
+// paragraph input
+
+function createParagWithText(text) {
+    const p = document.createElement('p');
+    p.textContent = text;
+
+    return p;
+}
+//a game session
+
+function game(playerSelect) {
+    let playerSelection = capitalize(playerSelect);
+  let computerSelection = getComputerSelection();
+
+  let roundResult = playRound(playerSelection, computerSelection);
+
+  if (roundResult.search('You Win!') > -1) {
+    playerScore++;
+  } else if (roundResult.search('You Lose!') > -1) {
+    computerScore++;
+  }
+
+  scorePlayer.textContent = playerScore;
+  scoreComputer.textContent = computerScore;
+  message.textContent = roundResult;
+  selectionPlayer.appendChild(createParagWithText(playerSelection));
+  selectionComputer.appendChild(createParagWithText(computerSelection));
+
+  if (playerScore >= 5 && computerScore < 5) {
+    message.textContent = 'Game Over. You Win!';
+  } else if (playerScore < 5 && computerScore >= 5) {
+    message.textContent = 'Game Over. You Lose!';
+  }
+}
+
+// function  for random numbers
+function random(number) {
+    return Math.floor(Math.random() * number + 1);
+}
+
+// function for string text capitalization
+function capitalize(string) {
+    return (string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1));
+}
